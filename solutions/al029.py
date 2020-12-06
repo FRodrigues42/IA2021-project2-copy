@@ -9,7 +9,7 @@ from __future__ import print_function
 import numpy as np
 
 def plurality_value(examples):
-    pass
+    np.random.choice(np.flatnonzero(examples == examples.max()))
 
 def importance(arg, examples):
     pass
@@ -42,15 +42,15 @@ def filter_attributes(attributes, a_to_remove):
     return filtered_attributes
 
 def decision_tree_learning(examples, attributes, parent_examples=None):
-"""
-    examples: dicionario -> { (valor do atributo 0, valor do atributo 1, ...): classificacao, ... }
-    attributes: dicionario -> { posicao do atributo 0: (valor 0 do atributo 0, valor 1 do atributo 0, ...), ...}
-    parent_examples: não existe se for o inicio da construcao da decision tree
-"""
+
+# examples: dicionario -> { (valor do atributo 0, valor do atributo 1, ...): classificacao, ... }
+# attributes: dicionario -> { posicao do atributo 0: (valor 0 do atributo 0, valor 1 do atributo 0, ...), ...}
+# parent_examples: não existe se for o inicio da construcao da decision tree
+
     if len(examples) == 0:
         return plurality_value(parent_examples)
     elif len(set(examples.values())) == 1:
-        return list(d.values())[0]
+        return list(d.values())[0] # d? aqui imagino que seja examples.values, certo?
     elif len(attributes) == 0:
         return plurality_value(examples)
     else:
